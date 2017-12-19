@@ -58,6 +58,12 @@ public class UserUpdateController {
 	public ModelAndView userPermission() {
 		return new ModelAndView("updateUserPermission");
 	}
+	
+		// show user return to UpadteHome form
+					@GetMapping("/updateHome_return")
+					public ModelAndView userupdateReturnHome() {
+						return new ModelAndView("updateHome");
+					}
 
 	@PostMapping("/user_update_home")
 	public ModelAndView userUpdate(@ModelAttribute UserVo cmd) {
