@@ -14,11 +14,11 @@ import com.mk.tracrat.dto.UserRoleDto;
 public class UserInsertDaoImpl implements UserInsertDao {
 	@Autowired
 	private JdbcTemplate jt;
-	private static final String INSERT_USER_DATA = "insert into t_user_create values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String INSERT_USER_ADDRESS = "insert into t_address_create values(?,?,?,?,?,?,?)";
-	private static final String INSERT_USER_ROLE = "insert into t_role_create values(?,?,?,?,?,?,?)";
-	private static final String INSERT_USER_PERMISSION = "insert into t_permission_create values(?,?,?,?,?,?,?)";
-	private static final String INSERT_USER_ORGANIZATION = "INSERT INTO t_organization_create VALUES(?,?,?,?,?,?)";
+	private static final String INSERT_USER_DATA = "call p_User_table(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_USER_ADDRESS = "call p_Address_table(?,?,?,?,?,?,?)";
+	private static final String INSERT_USER_ROLE = "call p_Role_table(?,?,?,?,?,?,?)";
+	private static final String INSERT_USER_PERMISSION = "call p_parmission_table(?,?,?,?,?,?,?)";
+	private static final String INSERT_USER_ORGANIZATION = "call p_insert_Organization(?,?,?,?,?,?)";
 
 	@Override
 	public int userInsert(UserDto dto) {

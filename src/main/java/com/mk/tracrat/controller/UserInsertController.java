@@ -60,6 +60,12 @@ public class UserInsertController {
 		return new ModelAndView("userPermission");
 	}
 
+	// show user return to home form
+	@GetMapping("/home_return")
+	public ModelAndView userReturn() {
+		return new ModelAndView("home");
+	}
+
 	// Inserting user data into data base
 	@PostMapping("/user_home")
 	// @ResponseBody
