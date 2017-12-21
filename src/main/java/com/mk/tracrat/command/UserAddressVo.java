@@ -3,6 +3,10 @@ package com.mk.tracrat.command;
 import java.io.Serializable;
 
 public class UserAddressVo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int address_id;
 	private int user_id;
 	private String address1;

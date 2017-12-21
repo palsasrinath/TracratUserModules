@@ -1,6 +1,7 @@
 package com.mk.tracrat.command;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class UserOrganizationVo implements Serializable {
 	/**
@@ -73,6 +74,11 @@ public class UserOrganizationVo implements Serializable {
 	public String toString() {
 		return "UserOrganizationVo [orgd=" + org_id + ", status=" + status + ", created_date=" + created_date + ", created_by="
 				+ created_by + ", modified_date=" + modified_date + ", modified_by=" + modified_by + "]";
+	}
+
+	public Map<String, ?> toUri() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
