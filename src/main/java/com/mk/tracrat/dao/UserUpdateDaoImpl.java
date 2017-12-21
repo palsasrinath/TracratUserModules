@@ -16,9 +16,8 @@ public class UserUpdateDaoImpl implements UserUpdateDao {
 	@Autowired
 	private JdbcTemplate jt;
 
-	private static final String UPDATE_USER_DATA = "update t_user_create set org_id=?, first_name=?,last_name=?,age=?,gender=?,mobile_number=?,superuserflag=?,status=?,created_date=?,created_by=?,modified_date=?,modified_by=? where user_id=?";
-	private static final String UPDATE_USER_ROLE_DATA = "update t_role_create set user_id=?,status=?,created_date=?,created_by=?,modified_date=?,modified_by=? where role_id=?";
-	//private static final String UPDATE_ORGANIZATION_DATA = "UPDATE t_organization_create SET status=?,created_date=?,created_by=?,modified_date=?,modified_by=? WHERE org_id=?";
+	private static final String UPDATE_USER_DATA = "call procd_user_update(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE_USER_ROLE_DATA = "call procd_role_update(?,?,?,?,?,?,?)";
 	private static final String UPDATE_ADDRESS_DATA = "call procd_address_update(?,?,?,?,?,?,?)";
 	private static final String UPDATE_PERMISSION_DATA = "call procd_permission_update(?,?,?,?,?,?,?)";
 	private static final String UPDATE_ORGANIZATION_DATA = "call procd_organization_update(?,?,?,?,?,?)";
