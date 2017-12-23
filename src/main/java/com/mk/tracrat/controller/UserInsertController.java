@@ -1,5 +1,10 @@
 package com.mk.tracrat.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,6 +70,11 @@ public class UserInsertController {
 	public ModelAndView userReturn() {
 		return new ModelAndView("home");
 	}
+	// show user return to home form
+		@GetMapping("/module_details")
+		public ModelAndView details() {
+			return new ModelAndView("moduleDetails");
+		}
 
 	// Inserting user data into data base
 	@PostMapping("/user_home")
@@ -124,5 +134,25 @@ public class UserInsertController {
 	public ResponseEntity<String> getUsers() {
 		String user = "Senthil";
 		return new ResponseEntity<String>(user, HttpStatus.OK);
+	}
+	@GetMapping(value = "/get_user_details")
+	public ModelAndView getUserDetails(@ModelAttribute UserVo cmd,HttpServletRequest request) {
+		UserDto dto = new UserDto();
+		BeanUtils.copyProperties(cmd, dto);
+		List<UserDto> userList = service.getUserDetails(dto);
+		HttpSession session = request.getSession();
+		session.setAttribute("userList", userList);
+		// String json = JsonUtil.javaToJson(result);
+		return new ModelAndView("userList", "result", userList);
+	}
+	@GetMapping(value = "/get_address_details")
+	public ModelAndView getAddressDetails(@ModelAttribute UserAddressVo cmd,HttpServletRequest request) {
+		UserAddressDto dto = new UserAddressDto();
+		BeanUtils.copyProperties(cmd, dto);
+		List<UserAddressDto> addressList = service.getAddressDetails(dto);
+		HttpSession session = request.getSession();
+		session.setAttribute("addressList", addressList);
+		// String json = JsonUtil.javaToJson(result);
+		return new ModelAndView("addressList", "result", addressList);
 	}
 }
