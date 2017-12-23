@@ -78,5 +78,19 @@ public class UserInsertDaoImpl implements UserInsertDao {
 		return addressList;
 	}
 
+	@Override
+	public List<UserPermissionDto> getPermissionDetails(UserPermissionDto dto) {
+		String sql = "SELECT * FROM t_permission_create";
+		List<UserPermissionDto> permissionList = jt.query(sql, new BeanPropertyRowMapper(UserPermissionDto.class));
+		return permissionList;
+	}
+
+	@Override
+	public List<UserOrganizationDto> getOrganizationDetails(UserOrganizationDto dto) {
+		String sql = "SELECT * FROM t_organization_create";
+		List<UserOrganizationDto> organizationList = jt.query(sql, new BeanPropertyRowMapper(UserOrganizationDto.class));
+		return organizationList;
+	}
+
 	
 }

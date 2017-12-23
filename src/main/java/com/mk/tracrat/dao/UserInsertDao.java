@@ -2,7 +2,6 @@ package com.mk.tracrat.dao;
 
 import java.util.List;
 
-import com.mk.tracrat.command.UserAddressVo;
 import com.mk.tracrat.dto.UserAddressDto;
 import com.mk.tracrat.dto.UserDto;
 import com.mk.tracrat.dto.UserOrganizationDto;
@@ -24,5 +23,9 @@ public interface UserInsertDao {
 	public List<UserDto> getUserDetails(UserDto dto);
 
 	public List<UserAddressDto> getAddressDetails(UserAddressDto dto);
+
+	public List<UserPermissionDto> getPermissionDetails(UserPermissionDto dto);
+
+	public List<UserOrganizationDto> getOrganizationDetails(UserOrganizationDto dto);
 
 }

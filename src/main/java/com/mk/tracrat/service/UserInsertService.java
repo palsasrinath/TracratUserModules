@@ -70,4 +70,12 @@ public class UserInsertService {
 		return dao.getAddressDetails(dto);
 	}
 
+	public List<UserPermissionDto> getPermissionDetails(UserPermissionDto dto) {
+		return dao.getPermissionDetails(dto);
+	}
+
+	public List<UserOrganizationDto> getOrganizationDetails(UserOrganizationDto dto) {
+		return dao.getOrganizationDetails(dto);
+	}
+
 }

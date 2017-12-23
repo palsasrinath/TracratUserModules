@@ -155,4 +155,24 @@ public class UserInsertController {
 		// String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("addressList", "result", addressList);
 	}
+	@GetMapping(value = "/get_permission_details")
+	public ModelAndView getPermissionDetails(@ModelAttribute UserPermissionVo cmd,HttpServletRequest request) {
+		UserPermissionDto dto = new UserPermissionDto();
+		BeanUtils.copyProperties(cmd, dto);
+		List<UserPermissionDto> permissionList = service.getPermissionDetails(dto);
+		HttpSession session = request.getSession();
+		session.setAttribute("permissionList", permissionList);
+		// String json = JsonUtil.javaToJson(result);
+		return new ModelAndView("permissionList", "result", permissionList);
+	}
+	@GetMapping(value = "/get_organization_details")
+	public ModelAndView getOrganizationDetails(@ModelAttribute UserOrganizationVo cmd,HttpServletRequest request) {
+		UserOrganizationDto dto = new UserOrganizationDto();
+		BeanUtils.copyProperties(cmd, dto);
+		List<UserOrganizationDto> organizationList = service.getOrganizationDetails(dto);
+		HttpSession session = request.getSession();
+		session.setAttribute("organizationList", organizationList);
+		// String json = JsonUtil.javaToJson(result);
+		return new ModelAndView("organizationList", "result", organizationList);
+	}
 }
