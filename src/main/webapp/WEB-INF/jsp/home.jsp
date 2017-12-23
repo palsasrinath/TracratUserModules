@@ -9,5 +9,11 @@
 <a href="update" style="color: #B8860B;"><h4 align="center">UpdateYourDetails</h4></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
 <a href="module_details" style="color: #B8860B;"><h4 align="center">Click here to get the details of modules</h4></a>
+<form action="user_get_id">
+<table>
+<tr><td>UserId</td><td><input type="text" name="user_id"></td></tr>
+<tr><input type="submit" value="search"/></i></tr>
+</table>
+</form>
 </body>
 </html>

@@ -12,7 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -70,11 +72,12 @@ public class UserInsertController {
 	public ModelAndView userReturn() {
 		return new ModelAndView("home");
 	}
+
 	// show user return to home form
-		@GetMapping("/module_details")
-		public ModelAndView details() {
-			return new ModelAndView("moduleDetails");
-		}
+	@GetMapping("/module_details")
+	public ModelAndView details() {
+		return new ModelAndView("moduleDetails");
+	}
 
 	// Inserting user data into data base
 	@PostMapping("/user_home")
@@ -135,8 +138,9 @@ public class UserInsertController {
 		String user = "Senthil";
 		return new ResponseEntity<String>(user, HttpStatus.OK);
 	}
+
 	@GetMapping(value = "/get_user_details")
-	public ModelAndView getUserDetails(@ModelAttribute UserVo cmd,HttpServletRequest request) {
+	public ModelAndView getUserDetails(@ModelAttribute UserVo cmd, HttpServletRequest request) {
 		UserDto dto = new UserDto();
 		BeanUtils.copyProperties(cmd, dto);
 		List<UserDto> userList = service.getUserDetails(dto);
@@ -145,8 +149,9 @@ public class UserInsertController {
 		// String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("userList", "result", userList);
 	}
+
 	@GetMapping(value = "/get_address_details")
-	public ModelAndView getAddressDetails(@ModelAttribute UserAddressVo cmd,HttpServletRequest request) {
+	public ModelAndView getAddressDetails(@ModelAttribute UserAddressVo cmd, HttpServletRequest request) {
 		UserAddressDto dto = new UserAddressDto();
 		BeanUtils.copyProperties(cmd, dto);
 		List<UserAddressDto> addressList = service.getAddressDetails(dto);
@@ -155,8 +160,9 @@ public class UserInsertController {
 		// String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("addressList", "result", addressList);
 	}
+
 	@GetMapping(value = "/get_permission_details")
-	public ModelAndView getPermissionDetails(@ModelAttribute UserPermissionVo cmd,HttpServletRequest request) {
+	public ModelAndView getPermissionDetails(@ModelAttribute UserPermissionVo cmd, HttpServletRequest request) {
 		UserPermissionDto dto = new UserPermissionDto();
 		BeanUtils.copyProperties(cmd, dto);
 		List<UserPermissionDto> permissionList = service.getPermissionDetails(dto);
@@ -165,8 +171,9 @@ public class UserInsertController {
 		// String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("permissionList", "result", permissionList);
 	}
+
 	@GetMapping(value = "/get_organization_details")
-	public ModelAndView getOrganizationDetails(@ModelAttribute UserOrganizationVo cmd,HttpServletRequest request) {
+	public ModelAndView getOrganizationDetails(@ModelAttribute UserOrganizationVo cmd, HttpServletRequest request) {
 		UserOrganizationDto dto = new UserOrganizationDto();
 		BeanUtils.copyProperties(cmd, dto);
 		List<UserOrganizationDto> organizationList = service.getOrganizationDetails(dto);
@@ -174,5 +181,26 @@ public class UserInsertController {
 		session.setAttribute("organizationList", organizationList);
 		// String json = JsonUtil.javaToJson(result);
 		return new ModelAndView("organizationList", "result", organizationList);
+	}
+
+	@GetMapping("/get_user_role")
+	public ModelAndView getRoleDetails(HttpServletRequest req) {
+		UserRoleDto dto = new UserRoleDto();
+		List<UserRoleDto> roleList = service.getRoleDetails(dto);
+		HttpSession session = req.getSession();
+		session.setAttribute("roleList", roleList);
+		System.out.println("session   " + roleList);
+		return new ModelAndView("roleList", "role", roleList);
+	}
+//Get userDetails by id
+	@PostMapping("/user_get_id")
+	public ModelAndView getUserDetailsById(@ModelAttribute int user_id, HttpServletRequest req) {
+		System.out.println("controller    " + user_id);
+		List<UserDto> ListUser = service.getUser(user_id);
+		HttpSession session = req.getSession();
+		System.out.println("session user  " + ListUser);
+		session.setAttribute("ListUser", ListUser);
+		return new ModelAndView("ListUserById", "result", ListUser);
+
 	}
 }

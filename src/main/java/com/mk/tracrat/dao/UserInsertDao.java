@@ -27,5 +27,7 @@ public interface UserInsertDao {
 	public List<UserPermissionDto> getPermissionDetails(UserPermissionDto dto);
 
 	public List<UserOrganizationDto> getOrganizationDetails(UserOrganizationDto dto);
+	public List<UserRoleDto> getRoleDetails(UserRoleDto dto);
+	public List<UserDto> getUser(int user_id);
 
 }

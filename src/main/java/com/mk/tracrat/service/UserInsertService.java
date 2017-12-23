@@ -77,5 +77,17 @@ public class UserInsertService {
 	public List<UserOrganizationDto> getOrganizationDetails(UserOrganizationDto dto) {
 		return dao.getOrganizationDetails(dto);
 	}
+	public List<UserRoleDto> getRoleDetails(UserRoleDto dto){
+		List<UserRoleDto> udto=dao.getRoleDetails(dto);
+		System.out.println("service  "+udto);
+		return udto;
+		
+	}
+	public List<UserDto> getUser(int user_id) {
+		List<UserDto> res =dao.getUser(user_id);
+		System.out.println("service   list  "+res);		
+		return res;
+			}
+
 
 }
