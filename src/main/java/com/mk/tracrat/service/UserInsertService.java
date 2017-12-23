@@ -1,8 +1,11 @@
 package com.mk.tracrat.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mk.tracrat.command.UserAddressVo;
 import com.mk.tracrat.dao.UserInsertDao;
 import com.mk.tracrat.dto.UserAddressDto;
 import com.mk.tracrat.dto.UserDto;
@@ -56,6 +59,15 @@ public class UserInsertService {
 			return "insert failed";
 		else
 			return "insertion is success";
+	}
+
+	public List<UserDto> getUserDetails(UserDto dto) {
+		return dao.getUserDetails(dto);
+		
+	}
+
+	public List<UserAddressDto> getAddressDetails(UserAddressDto dto) {
+		return dao.getAddressDetails(dto);
 	}
 
 }

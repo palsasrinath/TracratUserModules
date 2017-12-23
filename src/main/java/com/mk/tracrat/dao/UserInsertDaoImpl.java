@@ -1,9 +1,13 @@
 	package com.mk.tracrat.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mk.tracrat.command.UserAddressVo;
 import com.mk.tracrat.dto.UserAddressDto;
 import com.mk.tracrat.dto.UserDto;
 import com.mk.tracrat.dto.UserOrganizationDto;
@@ -57,4 +61,22 @@ public class UserInsertDaoImpl implements UserInsertDao {
 				dto.getCreated_by(), dto.getModified_date(), dto.getModified_by());
 		return responce;
 	}
+
+	@Override
+	public List<UserDto> getUserDetails(UserDto dto) {
+		String sql = "SELECT * FROM t_user_create";
+
+        List<UserDto> userList = jt.query(sql, new BeanPropertyRowMapper(UserDto.class));
+
+        return userList;
+	}
+
+	@Override
+	public List<UserAddressDto> getAddressDetails(UserAddressDto dto) {
+		String sql = "SELECT * FROM t_address_create";
+		List<UserAddressDto> addressList = jt.query(sql, new BeanPropertyRowMapper(UserAddressDto.class));
+		return addressList;
+	}
+
+	
 }
