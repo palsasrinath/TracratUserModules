@@ -30,4 +30,8 @@ public interface UserInsertDao {
 	public List<UserRoleDto> getRoleDetails(UserRoleDto dto);
 	public List<UserDto> getUser(int user_id);
 
+	public List<UserOrganizationDto> getOrgDetailsByid(int org_id);
+
+	public List<UserRoleDto> getRoleDetails(int role_id);
+
 }

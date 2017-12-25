@@ -79,6 +79,28 @@ public class UserInsertController {
 		return new ModelAndView("moduleDetails");
 	}
 
+	// home page for getting details form
+	@GetMapping("/getbyid_users_details")
+	public ModelAndView getUsersByid() {
+		return new ModelAndView("GetDetailsById_Home");
+	}
+
+	// search user by id in database
+	@GetMapping("/getbyid_user_details")
+	public ModelAndView searchUserByid() {
+		return new ModelAndView("searchUserByid");
+	}
+
+	@GetMapping("/getbyid_organization_details")
+	public ModelAndView searchOrgByid() {
+		return new ModelAndView("searchOrgByid");
+	}
+
+	@GetMapping("/getbyid_role_details")
+	public ModelAndView searchRoleByid() {
+		return new ModelAndView("searchRoleByid");
+	}
+
 	// Inserting user data into data base
 	@PostMapping("/user_home")
 	// @ResponseBody
@@ -192,9 +214,10 @@ public class UserInsertController {
 		System.out.println("session   " + roleList);
 		return new ModelAndView("roleList", "role", roleList);
 	}
-//Get userDetails by id
+
+	// Get userDetails by id
 	@PostMapping("/user_get_id")
-	public ModelAndView getUserDetailsById(@ModelAttribute int user_id, HttpServletRequest req) {
+	public ModelAndView getUserDetailsById(@RequestParam int user_id, HttpServletRequest req) {
 		System.out.println("controller    " + user_id);
 		List<UserDto> ListUser = service.getUser(user_id);
 		HttpSession session = req.getSession();
@@ -202,5 +225,26 @@ public class UserInsertController {
 		session.setAttribute("ListUser", ListUser);
 		return new ModelAndView("ListUserById", "result", ListUser);
 
+	}
+
+	// get userOrgDetails ById
+	@PostMapping("/org_get_id")
+	public ModelAndView getOrgDetailsByid(@RequestParam int org_id, HttpServletRequest req) {
+		System.out.println("controller   " + org_id);
+		List<UserOrganizationDto> orgDto = service.getOrganizationDetails(org_id);
+		HttpSession session = req.getSession();
+		session.setAttribute("orgDto", orgDto);
+		System.out.println("controller res  " + orgDto);
+		return new ModelAndView("ListOrgByid", "orgDto", orgDto);
+	}
+
+	@PostMapping("/role_get_id")
+	public ModelAndView getRoleDetaqilsByid(@RequestParam int role_id, HttpServletRequest req) {
+		System.out.println("controller req "+role_id);
+		List<UserRoleDto> roleDto = service.getRoleDetails(role_id);
+		HttpSession session = req.getSession();
+		session.setAttribute("roleDto", roleDto);
+		System.out.println("controller res  "+roleDto);
+		return new ModelAndView("ListRoleByid", "roleDto", roleDto);
 	}
 }

@@ -30,6 +30,8 @@ public class UserInsertDaoImpl implements UserInsertDao {
 	private static final String GET_USER_PERMISSION = "SELECT * FROM T_PERMISSION_CREATE";
 	private static final String GET_USER_ADDRESS = "SELECT * FROM T_ADDRESS_CREATE";
 	private static final String GET_USER_BYID="SELECT * FROM T_USER_CREATE WHERE USER_ID=?";
+	private static final String GET_ORG_BYID="SELECT * FROM T_ORGANIZATION_CREATE WHERE ORG_ID=?";
+	private static final String GET_ROLE_BYID="SELECT * FROM T_ROLE_CREATE WHERE ROLE_ID=?";
 	@Override
 	public int userInsert(UserDto dto) {
 		int result = jt.update(INSERT_USER_DATA, dto.getUser_id(), dto.getOrg_id(), dto.getFirst_name(),
@@ -107,6 +109,22 @@ public class UserInsertDaoImpl implements UserInsertDao {
 List<UserDto> dto=jt.query(GET_USER_BYID, new BeanPropertyRowMapper(UserDto.class), user_id);
 System.out.println("res dao  "+dto);		
 return dto;
+	}
+
+	@Override
+	public List<UserOrganizationDto> getOrgDetailsByid(int org_id) {
+		System.out.println("dao req  "+org_id);
+List<UserOrganizationDto> orgDto=jt.query(GET_ORG_BYID, new BeanPropertyRowMapper(UserOrganizationDto.class), org_id);
+System.out.println("dao res  "+orgDto);		
+return orgDto;
+	}
+
+	@Override
+	public List<UserRoleDto> getRoleDetails(int role_id) {
+System.out.println("dao req "+role_id);
+		List<UserRoleDto> roleDto=jt.query(GET_ROLE_BYID, new BeanPropertyRowMapper(UserRoleDto.class), role_id);
+		System.out.println("dao res "+roleDto);
+		return roleDto;
 	}
 
 }
